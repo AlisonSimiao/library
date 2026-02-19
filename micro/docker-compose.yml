@@ -1,0 +1,44 @@
+services:
+  postgres-users:
+    image: postgres:16-alpine
+    container_name: library_postgres_users
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: library
+      POSTGRES_PASSWORD: library123
+      POSTGRES_DB: users_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata_users:/var/lib/postgresql/data
+
+  postgres-books:
+    image: postgres:16-alpine
+    container_name: library_postgres_books
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: library
+      POSTGRES_PASSWORD: library123
+      POSTGRES_DB: books_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata_books:/var/lib/postgresql/data
+
+  postgres-loans:
+    image: postgres:16-alpine
+    container_name: library_postgres_loans
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: library
+      POSTGRES_PASSWORD: library123
+      POSTGRES_DB: loans_db
+    ports:
+      - "5435:5432"
+    volumes:
+      - pgdata_loans:/var/lib/postgresql/data
+
+volumes:
+  pgdata_users:
+  pgdata_books:
+  pgdata_loans:
