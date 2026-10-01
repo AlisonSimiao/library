@@ -1,0 +1,2 @@
+stack,timestamp,container_id,name,cpu_percent,mem_percent,mem_usage,net_io,block_io
+mono,2026-10-01T00:07:59.114268+00:00,7fa7bf430ef9,library_postgres,68.50%,0.19%,28.23MiB / 14.84GiB,440kB / 2.4MB,2.34MB / 56.3MB

@@ -153,6 +153,26 @@ A API estará disponível em `http://localhost:8080/api`
 
 ---
 
+## Benchmarks
+
+Para comparar a versão monolítica com a versão em microsserviços, existe um fluxo completo em [`benchmarks/`](./benchmarks/):
+
+- `benchmark.py` executa carga e exporta CSV.
+- `plot_results.py` gera gráficos em PNG.
+- `requirements.txt` lista as dependências Python.
+
+Exemplo:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r benchmarks/requirements.txt
+python3 benchmarks/benchmark.py --stack mono --base-url http://localhost:8080 --compose-dir mono --output-dir benchmarks/results
+python3 benchmarks/plot_results.py --input-dir benchmarks/results/mono
+```
+
+---
+
 ## Estrutura do Projeto
 
 ```

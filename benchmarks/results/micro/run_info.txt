@@ -1,0 +1,7 @@
+stack=micro
+base_url=http://localhost:8180
+started_at=2026-10-01T00:05:42.718222+00:00
+seed_users=120
+seed_books=120
+seed_loans=120
+finished_at=2026-10-01T00:05:43.881328+00:00

@@ -27,13 +27,13 @@ flowchart TD
     Client([Cliente HTTP / Postman]) --> Gateway
 
     subgraph "Camada de Gateway / Proxy"
-        Gateway[API Gateway (porta: 8080)]
+        Gateway[API Gateway (porta: 8180)]
     end
 
     subgraph "Camada de Microsserviços"
-        US[User Service (porta: 8081)]
-        BS[Book Service (porta: 8082)]
-        LS[Loan Service (porta: 8083)]
+        US[User Service (porta: 8181)]
+        BS[Book Service (porta: 8182)]
+        LS[Loan Service (porta: 8183)]
     end
 
     subgraph "Camada de Dados"
@@ -58,21 +58,21 @@ flowchart TD
 ### Detalhamento dos Componentes
 
 1. **API Gateway (`/gateway`)**
-   - Porta `8080`.
+   - Porta `8180`.
    - Único ponto de entrada. Encaminha rotas iniciadas com `/api/users`, `/api/books` e `/api/loans` para os microsserviços correspondentes usando proxy reverso (`httputil.NewSingleHostReverseProxy`).
 
 2. **User Service (`/user-service`)**
-   - Porta `8081`. 
+   - Porta `8181`. 
    - Gerencia exclusivamente entidades de "Usuário".
    - Banco de dados isolado: `users_db` (banco de dados via docker).
 
 3. **Book Service (`/book-service`)**
-   - Porta `8082`. 
+   - Porta `8182`. 
    - Gerencia a entidade "Livro" do acervo.
    - Banco de dados isolado: `books_db` (banco de dados via docker).
 
 4. **Loan Service (`/loan-service`)**
-   - Porta `8083`. 
+   - Porta `8183`. 
    - Gerencia "Empréstimos".
    - Banco de dados isolado: `loans_db` (banco de dados via docker).
    - Possui o `client.ServiceClient` para realizar GET em `User Service` e `Book Service` antes de confirmar um novo empréstimo (evitando a falta de exemplares).
@@ -108,7 +108,7 @@ O diretório traz um `docker-compose.yml` raiz que contém as **três instância
 ```bash
 docker compose up -d
 ```
-> Os bancos `postgres-users`, `postgres-books` e `postgres-loans` ficarão disponíveis respectivamente nas portas `5433`, `5434` e `5435`.
+> Os bancos `postgres-users`, `postgres-books` e `postgres-loans` ficarão disponíveis respectivamente nas portas `5543`, `5544` e `5545`.
 
 2. **Rodar cada serviço separadamente:**
 Em quatro terminais diferentes, a partir do diretório do serviço base (`/micro`), inicie os processos Go. As `migrations` rodarão de forma autônoma na inicialização de cada microsserviço.
@@ -132,4 +132,4 @@ go run ./cmd/main.go
 ```
 
 A API final, agregada, estará rodando via API Gateway em:
-**`http://localhost:8080/api/`**
+**`http://localhost:8180/api/`**

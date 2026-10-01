@@ -1,0 +1,7 @@
+stack,scenario,endpoint,requests,avg_latency_ms,median_latency_ms,p95_latency_ms,min_latency_ms,max_latency_ms,success_rate,rps
+micro,read_books,GET /api/books,60,10.005,8.801,20.899,1.757,29.995,100.0,747.814
+micro,read_loans,GET /api/loans,60,6.172,4.215,13.742,1.313,14.75,100.0,1185.115
+micro,read_users,GET /api/users,60,7.711,5.674,15.285,1.832,22.282,100.0,942.179
+micro,write_books,POST /api/books,60,10.304,9.911,17.006,4.193,25.662,100.0,743.787
+micro,write_loans,POST /api/loans,60,13.152,13.107,22.73,5.078,26.815,100.0,564.893
+micro,write_users,POST /api/users,60,7.635,6.461,12.927,3.818,13.557,100.0,982.671
